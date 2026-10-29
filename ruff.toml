@@ -1,0 +1,9 @@
+# pass_fail.py and rubric_score.py are the shared harness files, byte-for-byte
+# identical to the skeleton, so they can't be touched. Both carry a `#!` shebang
+# and EXE001 fires because the exec bit doesn't survive packaging from Windows.
+# The files are unmodified, so just ignore EXE001 on those two.
+[lint.per-file-ignores]
+"**/pass_fail.py" = ["EXE001"]
+"**/rubric_score.py" = ["EXE001"]
+"tests/pass_fail.py" = ["EXE001"]
+"tests/rubric_score.py" = ["EXE001"]

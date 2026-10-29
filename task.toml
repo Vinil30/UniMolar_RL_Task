@@ -1,0 +1,52 @@
+runtime_limits = 14400
+schema_version = "1.3"
+
+[task]
+name = "otter/unimol-3d-molecular-representation"
+description = "Build an SE(3)-invariant atom-pair transformer for 3D molecules, pre-train it by coordinate denoising and masked atom prediction, and measure what the 3D representation buys over 2D-topology and 1D-SMILES baselines."
+
+[metadata]
+domain = "graph-learning"
+subdomain = "graph-regression"
+tags = [
+    "3d-representation",
+    "se3-invariance",
+    "coordinate-denoising",
+    "self-supervised-pretraining",
+    "molecular-property-prediction",
+]
+source_dataset = "QM9 / dsgdb9nsd (Ramakrishnan et al., Scientific Data 2014)"
+# The shipped data is QM9 itself; no Uni-Mol code is redistributed, so the
+# licence and citation are the dataset's own. Verified against the figshare
+# API: every article in collection 978904, including dsgdb9nsd.xyz.tar.bz2,
+# is dedicated CC0 1.0. See environment/DATA_MANIFEST.md.
+source_url = "https://doi.org/10.6084/m9.figshare.c.978904"
+source_reference_id = "10.1038/sdata.2014.22"
+source_license = "CC0 1.0"
+
+# The platform requires egress to be enabled and denylist-controlled
+# (allow_internet must be true and this section is mandatory), so the denylist
+# below is as complete as the mirror landscape allows.
+[metadata.network]
+enabled = true
+policy = "internet_allowed_with_blacklist"
+blacklist_file = "network_blacklist.txt"
+
+[environment]
+build_timeout_sec = 1800.0
+workdir = "/app"
+os = "linux"
+cpus = 4
+memory_mb = 16384
+storage_mb = 20480
+gpus = 1
+gpu_types = ["A100"]
+# Nothing in this task needs the network; every input, split and label ships
+# in the image. Egress stays on only because the platform requires it.
+allow_internet = true
+
+[agent]
+timeout_sec = 14400.0
+
+[verifier]
+timeout_sec = 900.0

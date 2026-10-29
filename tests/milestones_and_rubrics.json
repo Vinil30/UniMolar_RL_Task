@@ -1,0 +1,98 @@
+{
+  "milestones": [
+    {
+      "id": "data-and-setup",
+      "name": "Conformation handling and deliverables",
+      "description": "The 3D splits are consumed correctly and every artifact the evaluation depends on is present, aligned with the inputs and internally consistent.",
+      "critical": true,
+      "criteria": [
+        {
+          "id": "predictions-wellformed",
+          "description": "predictions.json carries gap predictions for the test split and for all three representations on the validation split, plus one element per hidden atom, all finite, correctly sized and not a constant.",
+          "weight": 0.35
+        },
+        {
+          "id": "denoised-coords-wellformed",
+          "description": "denoised_coords.npz holds refined coordinates for every atom of the denoising split, with offsets matching the input file and geometry that stays within a refinement's distance of the perturbed input.",
+          "weight": 0.35
+        },
+        {
+          "id": "ablation-wellformed",
+          "description": "The ablation reports at least six runs covering 3D denoising pre-training on and off, geometry used and withheld, and at least three pre-training data scales, each with validation predictions.",
+          "weight": 0.3
+        }
+      ]
+    },
+    {
+      "id": "model-development",
+      "name": "Models and ablation",
+      "description": "Two separately trained models were submitted rather than one wearing two names, and the ablation runs are distinct trainings whose effects are re-derived from their own predictions rather than reported.",
+      "critical": true,
+      "criteria": [
+        {
+          "id": "unimol-checkpoint",
+          "description": "The 3D encoder checkpoint loads and holds a trained network's worth of parameters and layers.",
+          "weight": 0.2
+        },
+        {
+          "id": "baseline-checkpoint",
+          "description": "The 2D baseline checkpoint loads, is of substantial size, and is a different model from the 3D encoder rather than the same one resubmitted.",
+          "weight": 0.15
+        },
+        {
+          "id": "models-distinct",
+          "description": "The 3D, 2D and 1D representations produce measurably different validation predictions.",
+          "weight": 0.15
+        },
+        {
+          "id": "ablation-informative",
+          "description": "Every ablation run is re-scored against held-out labels from its own submitted predictions, no two configurations produce near-identical predictions, and withholding geometry measurably degrades accuracy.",
+          "weight": 0.2
+        },
+        {
+          "id": "pretraining-matters",
+          "description": "Runs that skip pre-training are re-scored against held-out labels and must be measurably worse, so the unlabelled corpus has to have been used rather than merely declared.",
+          "weight": 0.3
+        }
+      ]
+    },
+    {
+      "id": "evaluation-and-reporting",
+      "name": "Invariance, geometry and representation comparison",
+      "description": "The representation behaves the way an SE(3)-invariant 3D model must, the refinement improves real geometry, and the comparison against 1D and 2D baselines is measured on held-out labels rather than asserted.",
+      "critical": true,
+      "criteria": [
+        {
+          "id": "se3-invariance",
+          "description": "Molecules that occur twice in the test split under independent rigid motions and atom permutations receive the same prediction, which a model reading raw coordinates cannot achieve.",
+          "weight": 0.25
+        },
+        {
+          "id": "denoising-beats-input",
+          "description": "Refined geometry is measurably closer to the reference conformation than the perturbed input it started from, under the same rigid alignment.",
+          "weight": 0.15
+        },
+        {
+          "id": "baselines-competent",
+          "description": "The 2D topology and 1D SMILES baselines are trained in good faith and reach sensible error on held-out labels rather than being strawmen.",
+          "weight": 0.15
+        },
+        {
+          "id": "three-d-advantage",
+          "description": "The 3D representation outperforms both the 2D and the 1D baseline on the held-out validation labels.",
+          "weight": 0.1
+        },
+        {
+          "id": "analysis-written",
+          "description": "analysis.md discusses the value of 3D pre-training against the 1D sequence and 2D topology representations and covers the ablation axes.",
+          "weight": 0.1
+        },
+        {
+          "id": "modality-baselines-competent",
+          "description": "The bond-graph model predicts on a split shipping no coordinates and the sequence model on a split shipping nothing but SMILES, so each baseline is demonstrably a working model of its own modality rather than the 3D encoder relabelled.",
+          "weight": 0.25
+        }
+      ]
+    }
+  ]
+}

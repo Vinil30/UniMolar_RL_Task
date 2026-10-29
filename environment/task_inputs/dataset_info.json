@@ -1,0 +1,22 @@
+{
+  "source": "QM9 / dsgdb9nsd (Ramakrishnan et al., Sci. Data 2014)",
+  "target": "HOMO-LUMO gap in eV (B3LYP/6-31G(2df,p))",
+  "noise_sigma_angstrom": 0.15,
+  "mask_fraction_of_heavy_atoms": 0.5,
+  "atomic_numbers": [
+    1,
+    6,
+    7,
+    8,
+    9
+  ],
+  "hidden_atom_marker": 0,
+  "splits": {
+    "pretrain": 50000,
+    "train": 1000,
+    "val": 2000,
+    "test_rows": 3000,
+    "denoise": 2000,
+    "mask": 2000
+  }
+}

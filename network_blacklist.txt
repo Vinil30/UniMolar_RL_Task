@@ -1,0 +1,56 @@
+# Nothing in this task requires network access; every input, split and label
+# ships in the image. Egress remains enabled because the platform requires it,
+# so the public distributions of the source dataset and its mirrors are denied
+# below.
+
+# Primary deposit and its download endpoints.
+https://doi.org/10.6084/m9.figshare.c.978904
+https://figshare.com
+figshare.com
+https://ndownloader.figshare.com
+ndownloader.figshare.com
+https://api.figshare.com
+api.figshare.com
+https://springernature.figshare.com
+springernature.figshare.com
+
+# General-purpose dataset hosts carrying redistributions.
+https://huggingface.co
+huggingface.co
+https://hf.co
+hf.co
+https://cdn-lfs.huggingface.co
+https://zenodo.org
+zenodo.org
+https://www.kaggle.com
+kaggle.com
+https://storage.googleapis.com/kaggle-data-sets
+
+# Framework dataset loaders that fetch it on demand.
+https://data.dgl.ai
+data.dgl.ai
+https://data.pyg.org
+data.pyg.org
+https://deepchemdata.s3-us-west-1.amazonaws.com
+deepchemdata.s3-us-west-1.amazonaws.com
+http://deepchem.io.s3-website-us-west-1.amazonaws.com
+deepchem.io.s3-website-us-west-1.amazonaws.com
+https://moleculenet.org
+moleculenet.org
+http://quantum-machine.org
+quantum-machine.org
+http://www.quantum-machine.org
+
+# Repositories whose loaders embed the download URLs.
+https://github.com/pyg-team/pytorch_geometric
+github.com/pyg-team/pytorch_geometric
+https://github.com/dmlc/dgl
+github.com/dmlc/dgl
+https://github.com/deepchem/deepchem
+github.com/deepchem/deepchem
+https://github.com/atomistic-machine-learning/schnetpack
+github.com/atomistic-machine-learning/schnetpack
+https://github.com/deepmodeling/Uni-Mol
+github.com/deepmodeling/Uni-Mol
+https://github.com/klicperajo/dimenet
+github.com/klicperajo/dimenet
